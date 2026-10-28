@@ -1,0 +1,71 @@
+/* Finale: a tall section; its sticky frame carries the side information and the hero over the stage. */
+.finale{position:relative;height:calc(712vh + var(--scene-exit-hold,120px))}
+.fin-in{position:sticky;top:0;height:100vh;height:100svh;pointer-events:none}
+
+/* Full-canvas hero and shade; cinema bars are independent overlays. */
+.hero-final{position:absolute;inset:0;pointer-events:auto;overflow:hidden;visibility:hidden}
+.hf-shade{position:absolute;inset:0;pointer-events:none;background:radial-gradient(ellipse 46% 52% at 20% 76%,rgba(0,0,0,.78) 0%,rgba(0,0,0,.5) 42%,rgba(0,0,0,.18) 68%,transparent 86%);opacity:var(--txt,0)}
+.hf-content{position:absolute;left:clamp(18px,5%,64px);bottom:clamp(18px,9%,80px);max-width:min(34rem,82%);display:grid;gap:14px;justify-items:start;opacity:var(--txt,0);transform:translateY(calc((1 - var(--txt,0)) * 16px));text-shadow:0 1px 18px rgba(0,0,0,.55)}
+.hf-title{font-family:var(--f-display);font-weight:500;font-size:clamp(1.7rem,1.1rem + 2.4vw,3.3rem);line-height:1.05;letter-spacing:-.03em;margin:0;text-wrap:balance}
+.hf-lead{margin:0;color:var(--soft);font-size:clamp(.95rem,.9rem + .3vw,1.15rem);max-width:40ch}
+.hf-cta{display:flex;flex-wrap:wrap;gap:10px}
+@media (max-width:640px){.hf-lead,.hf-content .eyebrow{display:none}.hf-title{font-size:1.15rem}.hf-content .cta{padding:8px 11px;font-size:11px}}
+
+/* side information: alternates left and right, a soft dark field behind each block keeps it readable */
+.caps{position:absolute;inset:0;pointer-events:none}
+.cap::before{content:"";position:absolute;inset:auto;left:calc(var(--shade-left,0px) - 36px);top:calc(var(--shade-top,0px) - 56px);width:calc(var(--shade-width,100%) + 72px);height:calc(var(--shade-height,100%) + 112px);z-index:-1;pointer-events:none;background:rgba(0,0,0,.82);border-radius:48px;filter:blur(20px)}
+
+.cap{position:absolute;isolation:isolate;width:min(31ch,calc(100% - 32px));display:grid;gap:12px;padding:26px 30px;margin:-26px -30px;pointer-events:auto;opacity:0;visibility:hidden;
+  background:none;will-change:opacity,transform}
+.cap.l{left:max(16px,5vw);top:max(76px,15vh)}
+.cap.r{right:max(16px,5vw);bottom:max(40px,12vh)}
+.cap-k{color:var(--warm);opacity:.9}
+.cap.r .cap-k{color:var(--cool)}
+.cap-h{font-family:var(--f-accent);font-weight:400;font-stretch:normal;text-transform:uppercase;font-size:clamp(1.4rem,1rem + 1.4vw,2.25rem);line-height:1.1;letter-spacing:-.015em;margin:0;color:#f4eee6;text-wrap:balance}
+.cap-t{margin:0;font-size:clamp(.98rem,.93rem + .25vw,1.1rem);line-height:1.55;color:var(--soft);text-wrap:pretty}
+.cap-m{display:flex;align-items:center;gap:14px}
+.cap-m b{font-family:var(--f-accent);font-weight:400;font-stretch:normal;text-transform:uppercase;font-size:clamp(2.6rem,1.9rem + 2.2vw,3.9rem);line-height:1;letter-spacing:-.045em;color:#fff}
+.cap-m span{font-family:var(--f-text);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);line-height:1.5}
+.cap-d{display:grid;grid-template-columns:auto 1fr;gap:8px 18px;margin:0;padding-top:12px;border-top:1px solid var(--line)}
+.cap-d dt{font-family:var(--f-text);font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);align-self:center}
+.cap-d dd{margin:0;color:var(--ink);font-size:.98rem}
+.cap-tags{display:flex;flex-wrap:wrap;gap:6px}
+.cap-tags span{font-family:var(--f-text);font-size:11px;letter-spacing:.08em;padding:5px 10px;border:1px solid rgba(236,231,223,.2);border-radius:999px;color:var(--soft)}
+.cap-s{margin:0;padding:0;list-style:none;counter-reset:s;display:grid;gap:10px}
+.cap-s li{counter-increment:s;display:grid;grid-template-columns:2.2em 1fr;color:var(--ink);font-size:1rem;line-height:1.4}
+.cap-s li::before{content:counter(s,decimal-leading-zero);font-family:var(--f-text);font-size:11px;color:var(--cool);padding-top:.3em}
+.cap-bar{height:2px;background:rgba(236,231,223,.14);position:relative;overflow:hidden}
+.cap-bar i{position:absolute;inset:0 auto 0 0;width:var(--w);background:linear-gradient(90deg,var(--warm),var(--cool))}
+.cap-note{color:var(--muted)!important}
+@media (max-width:899px){.cap.l,.cap.r{left:16px;right:auto;top:auto;bottom:calc(5vh + env(safe-area-inset-bottom,0px));width:min(40ch,calc(100% - 32px));margin:0;padding:18px 0}}
+
+/* Keep these rules after the base caption rules: no internal scrollbars at any narrow width. */
+@media(max-width:899px){
+  .cap.l,.cap.r{bottom:calc(84px + env(safe-area-inset-bottom,0px));width:min(40ch,calc(100% - 32px));padding:0;margin:0;max-height:none;overflow:visible;font-size:clamp(12px,min(2.6cqh,3.4cqw),16px);gap:.65em}
+  .cap-h{font-size:1.4em;line-height:1.13}
+  .cap-t{font-size:1em;line-height:1.4}
+  .cap-k,.cap-m span,.cap-d dt,.cap-tags span,.cap-note{font-size:.72em}
+  .cap-m b{font-size:2.65em}
+  .cap-d{gap:.4em 1em;padding-top:.6em}
+  .cap-d dd,.cap-s li{font-size:1em}
+  .cap-s{gap:.5em}
+  .cap-tags span{padding:.3em .6em}
+  .hf-content{bottom:calc(84px + env(safe-area-inset-bottom,0px))}
+}
+
+@media(min-width:900px){
+  .cap{width:min(34ch,32vw);padding:0;margin:0}
+  .cap.r{right:clamp(32px,5vw,96px)}
+  .cap.l{left:clamp(32px,5vw,96px)}
+}
+.cap-h,.cap-t,.cap-d dd{overflow-wrap:anywhere}
+
+/* The region reserves space for the soft edge; the text keeps its own narrow width. */
+.caps,.fin-in{overflow:visible}
+.cap-region{position:absolute;box-sizing:content-box;width:min(34ch,32vw);padding:88px 64px;overflow:visible;pointer-events:none}
+.cap-region.l{left:calc(clamp(32px,5vw,96px) - 64px);top:calc(max(76px,15vh) - 88px)}
+.cap-region.r{right:calc(clamp(32px,5vw,96px) - 64px);bottom:calc(max(84px,12vh) - 88px)}
+@media(max-width:899px){
+  .cap-region.l,.cap-region.r{left:-48px;right:auto;top:auto;bottom:calc(-4px + env(safe-area-inset-bottom,0px));width:min(40ch,calc(100vw - 32px));font-size:clamp(12px,min(2.6cqh,3.4cqw),16px)}
+}
+.cap-region > .cap{position:relative;inset:auto;width:100%;max-width:none;margin:0;padding:0;overflow:visible}

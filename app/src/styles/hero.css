@@ -1,0 +1,13 @@
+.hero{max-width:64rem;margin-inline:auto;padding-inline:16px;padding-block:clamp(130px,24vh,240px) clamp(80px,16vh,160px);display:grid;gap:24px}
+.hero h1{font-family:var(--f-display);font-weight:500;font-size:clamp(2.3rem,1.4rem + 4vw,4.8rem);line-height:1.02;letter-spacing:-.035em;margin:0;text-wrap:balance;max-width:15ch}
+.hero h1 .warm,.hero h1 .cool{font-family:var(--f-accent);font-weight:400;font-stretch:normal;text-transform:uppercase;letter-spacing:-.015em}
+.lead{font-size:clamp(1.05rem,.98rem + .35vw,1.25rem);max-width:46ch;margin:0;color:var(--soft)}
+.cue{display:flex;align-items:center;gap:12px;color:var(--muted);margin-top:12px}
+.cue i{display:block;width:1px;height:44px;background:linear-gradient(var(--muted),transparent);transform-origin:top;animation:cue 2.4s ease-in-out infinite}
+.skip{font:inherit;letter-spacing:inherit;text-transform:inherit;color:var(--ink);background:none;border:0;border-bottom:1px solid rgba(236,231,223,.35);border-radius:0;padding:2px 0;margin-left:6px;cursor:pointer}
+.skip:hover{color:var(--cool);border-color:var(--cool)}
+@keyframes cue{0%{transform:scaleY(.2)}50%{transform:scaleY(1)}100%{transform:scaleY(.2)}}
+.rm .cue i{animation:none}
+@media (prefers-reduced-motion: reduce){.cue i{animation:none}}
+
+@media(max-width:640px){.hero{padding-bottom:calc(136px + env(safe-area-inset-bottom,0px))}}

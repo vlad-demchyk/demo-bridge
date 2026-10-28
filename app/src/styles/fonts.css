@@ -1,0 +1,4 @@
+/* Local fonts: no external stylesheet or font service is required at runtime. */
+@font-face{font-family:"Noto Sans";font-style:normal;font-weight:500;font-stretch:87.5%;font-display:swap;src:url('/fonts/NotoSans-SemiCondensed-500.ttf') format('truetype')}
+@font-face{font-family:"Martian Mono";font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/MartianMono-Regular.ttf') format('truetype')}
+@font-face{font-family:"JetBrains Mono";font-style:normal;font-weight:400;font-display:swap;src:url('/fonts/JetBrainsMono-Regular.ttf') format('truetype')}

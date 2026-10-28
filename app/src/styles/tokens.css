@@ -1,0 +1,32 @@
+/* Design tokens and base. Black stage, soft warm/cool accents, Noto Sans SemiCondensed text, uppercase Martian Mono accents. */
+:root{
+  --bg:#000; --ink:#ece7df; --soft:#cfc9c0; --muted:#8a857d; --line:rgba(236,231,223,.12);
+  --warm:#ff7d40; --cool:#64d5ff; --panel:rgba(0,0,0,.5);
+  --f-text:"Noto Sans","Segoe UI",system-ui,sans-serif;
+  --f-display:"Noto Sans","Segoe UI",system-ui,sans-serif;
+  --f-accent:"Martian Mono","Noto Sans",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Consolas,monospace;
+  color-scheme:dark;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html,body{margin:0}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-text);font-weight:500;font-stretch:87.5%;font-synthesis:none;font-size:16px;line-height:1.6;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+:focus-visible{outline:1px solid var(--cool);outline-offset:3px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.warm{color:var(--warm)} .cool{color:var(--cool)}
+.eyebrow,.tag,.idx,.cap-k,.cue{font-family:var(--f-accent);font-weight:400;font-stretch:normal;font-size:12px;letter-spacing:.12em;text-transform:uppercase;margin:0}
+.eyebrow{color:var(--muted)}
+.cta{justify-self:start;display:inline-flex;align-items:center;gap:9px;margin-top:4px;font:400 14px/1 var(--f-accent);font-stretch:normal;text-transform:uppercase;letter-spacing:.06em;text-decoration:none;color:#000;background:rgba(236,231,223,.9);padding:10px 14px;border-radius:999px}
+.cta:hover{background:var(--cool)}
+.cta.ghost{background:rgba(0,0,0,.3);color:var(--ink);border:1px solid rgba(236,231,223,.45)}
+
+.ui-icon{width:18px;height:18px;flex:none;vertical-align:middle}
+.skip,.film-ctrls button{display:inline-flex;align-items:center;justify-content:center;gap:8px}
+
+.cta{transition:background .18s,color .18s,border-color .18s,box-shadow .18s,transform .12s}
+.cta.ghost:hover{background:rgba(100,213,255,.14);border-color:var(--cool);color:var(--cool)}
+.cta:focus-visible{outline:2px solid var(--cool);outline-offset:4px;box-shadow:0 0 0 4px rgba(100,213,255,.16)}
+.cta:active{transform:translateY(1px);background:var(--warm);color:#000}
+.cta.ghost:active{background:rgba(100,213,255,.25);border-color:var(--cool);color:var(--ink)}
+@media(prefers-reduced-motion:reduce){.cta{transition:none}}

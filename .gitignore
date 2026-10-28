@@ -1,0 +1,16 @@
+app/node_modules/
+app/dist/
+prebuilt/
+docs/
+skill/
+*.zip
+*.log
+.env
+.env.*
+FILE-MANIFEST.csv
+FINAL-UPDATE.txt
+MIGRATION-FROM-ORIGINAL.txt
+PERFORMANCE-REPORT.txt
+UPDATE-GUIDE.txt
+.DS_Store
+Thumbs.db
