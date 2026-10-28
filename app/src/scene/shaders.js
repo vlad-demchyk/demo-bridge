@@ -32,7 +32,14 @@ export const VS_PARTICLE=`
 in vec3 aDust;in vec4 aScene;in vec3 aColR;in vec3 aColS;in vec3 aDir;in vec4 aR;in vec3 aV;in vec2 aMD;in float aPhase;in float aCh;
 void st(int s,out vec3 p,out float sz,out vec3 c,out float a){
   if(s==0){float ph=aPhase,an=sin(uTime*(.04+.03*fract(ph*3.7))+ph*6.28)*.16,cs=cos(an),sn=sin(an);
-    p=vec3(aDust.x*cs-aDust.y*sn,aDust.x*sn+aDust.y*cs,aDust.z)+vec3(sin(uTime*.2+ph)*40.,cos(uTime*.17+ph)*30.,sin(uTime*.13+ph)*60.);sz=5.6;c=aColR*1.05;a=fract(ph*7.13)<.5?0.:.66;}
+    p=vec3(aDust.x*cs-aDust.y*sn,aDust.x*sn+aDust.y*cs,aDust.z)+vec3(sin(uTime*.2+ph)*40.,cos(uTime*.17+ph)*30.,sin(uTime*.13+ph)*60.);
+    // A sparse, stable range of brighter dust keeps the opening readable without lifting its dark base.
+    float glint=smoothstep(.80,.99,fract(ph*19.19));
+    // Stable size variation on a subset of dust, independent of brightness and time.
+    float sizeOffset=(fract(ph*31.47)*2.-1.)*.15*step(.6,fract(ph*11.73));
+    // Perspective already shrinks distant glyphs; this adds only a soft near-camera accent.
+    float nearDust=1.-smoothstep(1200.,6500.,length(p-uCamPos));
+    sz=5.6*(1.+sizeOffset)*(1.+.15*nearDust);c=aColR*(1.05+.55*glint);a=fract(ph*7.13)<.5?0.:.66+.12*glint;}
   else if(s<=2){
     float k=fract(aR.x*3.17+aR.w*1.31),R=uCore.w*(s==2?.22:1.);
     p=uCore.xyz+orb(aDir,k,aR.w,R);sz=s==2?2.5:3.;c=min(mix(aColS*1.4,vec3(1.,.8,.38),pow(1.-k,4.5)),vec3(1.));a=(s==2?.42:.28)*(1.-.55*k);}
